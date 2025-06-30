@@ -29,53 +29,62 @@ through the logic of the problem.
 
 
 import csv
+from pathlib import Path
+from wordcloud import WordCloud
+import imageio.v2 as imageio
+import matplotlib.pyplot as plt
 
 
 # create a file object to open the file in read mode
-
+students = open("students.csv","r")
 
 
 # create a csv object from the file object
-
+student_file = csv.reader(students, delimiter= ',')
 
 #skip the header row
-
+next(student_file)
 
 #create an outfile object for the pocessed record
-
-
+outfile = open('processedStudents.csv', 'a')
 
 #create a new dictionary named 'student_dict'
-
+student_dict = {}
 
 
 #use a loop to iterate through each row of the file
+for rec in student_file:
+    first_name = rec[2].strip()
+    last_name = rec[3].strip()
+    gpa = float(rec[8].strip())
+    full_name = first_name + ' ' + last_name
 
 
     #check if the GPA is below 3.0. If so, write the record to the outfile
-    
+    if gpa < 3.0:
+        outfile.write(full_name + ',' + gpa + '\n')
         
 
 
 
     # append the record to the dictionary with the student Full name in proper case 
     # as the Key and the value as the GPA
-    
+    student_dict[full_name] = gpa
 
 
 
 
 
 #print the entire dictionary
-
+print (student_dict)
 
 #Print the corresponding GPA for student 'Luke Brazzi'
-
+print("Luke Brazzi GPA:" , student_dict.get("Luke Brazzi", "Not found"))
 
 
 #close the outfile
-
-
+outfile.close()
+students.close()
 
 
 
