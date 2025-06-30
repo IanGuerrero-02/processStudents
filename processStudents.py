@@ -46,6 +46,7 @@ student_file = csv.reader(students, delimiter= ',')
 #skip the header row
 next(student_file)
 
+
 #create an outfile object for the pocessed record
 outfile = open('processedStudents.csv', 'a')
 
