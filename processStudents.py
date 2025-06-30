@@ -39,6 +39,7 @@ import matplotlib.pyplot as plt
 students = open("students.csv","r")
 
 
+
 # create a csv object from the file object
 student_file = csv.reader(students, delimiter= ',')
 
